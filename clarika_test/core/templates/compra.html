@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="">
+  {% csrf_token %}
+  {% for producto in productos %}
+  <div>
+    <h2>{{ producto }}</h2>
+    <ul>
+    {% for desc_producto in producto.descripciones.all %}
+      <li>
+        <div class="row">
+          <div class="col-9">
+            <h4>{{ desc_producto.nombre }}</h4>
+          </div>
+          <div class="col precio">${{ desc_producto.precio }}</div>
+        </div>
+        <div class="row">
+          <div class="col-9">{{ desc_producto.descripcion }}</div>
+          <div class="col cantidad">
+            <input type="text" name="producto-{{ desc_producto.id }}" value="0">
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+  <input type="submit" class="btn btn-primary" value="Comprar" />
+</form>
+{% endblock %}
