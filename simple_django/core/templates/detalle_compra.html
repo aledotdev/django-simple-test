@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+  <div><h3>{{ user.username }}, {{ compra.fecha }}</h3></div>
+  <div>{{ compra.direccion }}</div>
+  <div>{{ compra.estado}}, {{ compra.departamento }}, {{ compra.ciudad }}</div>
+  <div>{{ compra.telefono }}</div>
+  <br/>
+  <ul>
+    <li>
+      <div class="row">
+        <div class="col-6 title">Producto</div>
+        <div class="col-2 precio title">Precio unitario</div>
+        <div class="col-2 precio title">Cantidad</div>
+        <div class="col-2 precio title">Subtotal</div>
+      </div>
+    </li>
+    {% for detalle_compra in compra.detalles.all %}
+    <li>
+      <div class="row">
+        <div class="col-6"><h5>{{ detalle_compra.descripcion_producto.nombre }}</h5></div>
+        <div class="col-2 precio">${{ detalle_compra.descripcion_producto.precio }}</div>
+        <div class="col-2 precio">{{ detalle_compra.cantidad }}</div>
+        <div class="col-2 precio">${{ detalle_compra.subtotal }}</div>
+      </div>
+    </li>
+    {% endfor %}
+    <li>
+      <div class="row">
+        <div class="col-10"><h4>Total</h4></div>
+        <div class="col-2 precio">${{ compra.total }}</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+{% endblock %}
