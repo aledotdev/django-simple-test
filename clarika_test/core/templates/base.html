@@ -31,8 +31,11 @@
   </head>
   <body>
     <div class="container">
-      <div><a href="{% url 'home' %}">Home</a> 
-        / <a href="{% url 'comprar' %}">Comprar</a></div>
+      <div><a href="{% url 'home' %}">Home</a>
+        / <a href="{% url 'comprar' %}">Comprar</a>
+        / <a href="/api/producto/">API Productos</a>
+      </div>
+
       {% block content %}{% endblock %}
     </div>
     <!-- Optional JavaScript -->

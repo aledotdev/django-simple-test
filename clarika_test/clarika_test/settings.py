@@ -41,6 +41,9 @@ INSTALLED_APPS = [
 
     # Custom apps
     'core',
+
+    # thirtparty
+    'rest_framework',
     # 'debug_toolbar',
 ]
 
