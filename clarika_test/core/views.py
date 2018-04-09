@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.utils import timezone
 
 from .models import Producto, Compra, DetalleCompra, DescripcionProducto
+
+
+def home_view(request):
+    compras = Compra.objects.order_by('-fecha')
+    return render(request, 'home.html', dict(compras=compras))
 
 
 def detalle_compra_view(request, compra_id):
@@ -35,7 +40,7 @@ class CompraFormView(View):
         compra.total = precio_total
         compra.save()
 
-        return self.get(request)
+        return redirect('detalle-compra', compra_id=compra.id)
 
 
 def parse_productos(data):

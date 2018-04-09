@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<ul>
+  <li>
+    <div class="row">
+      <div class="col-4 title">Fecha</div>
+      <div class="col-4 title">Usuario</div>
+      <div class="col-2 precio title">Total</div>
+      <div class="col-4 title"></div>
+    </div>
+  </li>
+  {% for compra in compras %}
+  <li>
+    <div class="row">
+      <div class="col-4">{{ compra.fecha }}</div>
+      <div class="col-4"><h5>{{ compra.usuario.username }}</h5></div>
+      <div class="col-2 precio">${{ compra.total }}</div>
+      <div class="col-2 precio">
+        <a href="{% url 'detalle-compra' compra_id=compra.id %}">ver detalle</a>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
